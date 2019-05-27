@@ -78,4 +78,4 @@ Die Verpflegung ist für alle Teilnehmer unserer Schulung kostenlos.
 
 <img src="http://assets.angular.schule/logo-angular-schule.png" height="60">
 
-### &copy; 2019 https://angular.schule, Stand: 28.09.2019
+### &copy; 2019 https://angular.schule, Stand: 28.05.2019
