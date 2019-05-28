@@ -50,7 +50,7 @@ npm -v
 > Erwartet: 6.x oder höher
 
 ng version
-> Erwartet: 8.0.0 oder höher
+> Erwartet: 7.x ODER 8.0.0
 ```
 
 
