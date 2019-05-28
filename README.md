@@ -2,6 +2,8 @@
 
 #### **mit Johannes Hoppe**
 
+[![Join the chat at https://gitter.im/2019-06-angular-workshop-heidelberg/community](https://badges.gitter.im/2019-06-angular-workshop-heidelberg/community.svg)](https://gitter.im/2019-06-angular-workshop-heidelberg/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 <hr>
 
 **Schön, dass Du dabei bist!**  
