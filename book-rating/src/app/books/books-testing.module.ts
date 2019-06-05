@@ -1,6 +1,20 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Input, Directive } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RepeatDirective } from './shared/repeat.directive';
+
+@Directive({
+  selector: '[brRepeat]'
+})
+export class DummyRepeatDirective {
+
+  constructor(
+  ) { }
+
+  @Input()
+  set brRepeat(times: number) {
+  }
+}
+
 
 @NgModule({
   declarations: [
@@ -10,8 +24,7 @@ import { RepeatDirective } from './shared/repeat.directive';
     CommonModule
   ],
   exports: [
-     // TODO: hier ersetzen mit einer Direktive die nix tut
-    RepeatDirective
+    DummyRepeatDirective
   ]
 })
 export class BooksTestingModule { }
