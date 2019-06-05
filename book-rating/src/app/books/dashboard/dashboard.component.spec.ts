@@ -45,6 +45,18 @@ describe('DashboardComponent', () => {
 
     expect(rs.rateUp).toHaveBeenCalled();
     expect(rs.rateUp).not.toHaveBeenCalledTimes(2);
+  });
 
+
+  it('doRateUp should call updateList', () => {
+    spyOn(component, 'updateAndSortList');
+    component.doRateUp({ isbn: '000' } as Book);
+
+    expect(component.updateAndSortList).toHaveBeenCalled();
+  });
+
+
+  it('updateAndSortList should replace the right book and should sort the array', () => {
+    // TODO
   });
 });
