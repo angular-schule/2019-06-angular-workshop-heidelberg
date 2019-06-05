@@ -1,6 +1,5 @@
 import { NgModule, Input, Directive } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RepeatDirective } from './shared/repeat.directive';
 
 @Directive({
   selector: '[brRepeat]'
@@ -18,7 +17,7 @@ export class DummyRepeatDirective {
 
 @NgModule({
   declarations: [
-    RepeatDirective
+    DummyRepeatDirective
   ],
   imports: [
     CommonModule
