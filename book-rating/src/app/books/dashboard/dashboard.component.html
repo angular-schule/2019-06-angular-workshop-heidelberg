@@ -5,6 +5,8 @@
 
   <br-book
     [book]="b"
+    (rateUp)="doRateUp($event)"
+    (rateDown)="doRateDown($event)"
   ></br-book>
 
 </div>

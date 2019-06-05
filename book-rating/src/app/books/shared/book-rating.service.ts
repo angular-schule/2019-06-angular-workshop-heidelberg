@@ -6,13 +6,21 @@ import { Book } from './book';
 })
 export class BookRatingService {
 
-  constructor() { }
+  readonly minRating = 1;
+  readonly maxRating = 5;
 
   rateUp(book: Book) {
-    return book;
+    const rating = book.rating < this.maxRating ? book.rating + 1 : this.maxRating;
+    return {
+      ...book,
+      rating
+    };
   }
 
   rateDown(book: Book) {
-    return book;
+    return {
+      ...book,
+      rating: Math.max(book.rating - 1, this.minRating)
+    };
   }
 }
