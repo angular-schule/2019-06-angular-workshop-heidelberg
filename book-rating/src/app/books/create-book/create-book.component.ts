@@ -37,5 +37,6 @@ export class CreateBookComponent {
       rating: 1
     };
     this.createBook.emit(newBook);
+    this.bookForm.reset();
   }
 }
