@@ -22,4 +22,21 @@ export class CreateBookComponent {
     return control.dirty && control.invalid;
   }
 
+  hasError(name: string, errorCode: string) {
+    const control = this.bookForm.get(name);
+    return control.hasError(errorCode) && control.dirty;
+  }
+
+  submitForm() {
+    const newBook = {
+      ...this.bookForm.value,
+      rating: 1
+    };
+
+    // TODO:
+    // 1. EventEmitter<Book> --> createBook
+    // 2. Event feuern
+    // 3. Auf Event subscriben (EventBindings)
+    // 4. Dem Array im Dashboard das Buch hinzufügen [...]
+  }
 }
