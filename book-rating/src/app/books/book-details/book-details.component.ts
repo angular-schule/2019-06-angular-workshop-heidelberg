@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, of, from } from 'rxjs';
-import { map, switchMap, retry } from 'rxjs/operators';
+import { map, switchMap, retry, filter, reduce, tap } from 'rxjs/operators';
 import { BookStoreService } from '../shared/book-store.service';
 import { Book } from '../shared/book';
 
@@ -18,47 +18,24 @@ export class BookDetailsComponent implements OnInit {
 
   ngOnInit() {
 
-    const observer = {
-      next: e => console.log(e),
-      error: err => console.error(err),
-      complete: () => console.log('Complete!')
-    };
-
-    const myObservable$ = new Observable<number>(subscriber => {
-      subscriber.next(1);
-      subscriber.next(2);
-
-      setTimeout(() => subscriber.next(3), 1000);
-      setTimeout(() => subscriber.next(4), 1000);
-      setTimeout(() => subscriber.error('😱'), 2000);
-    });
-
-    // import { map } from 'rxjs/operators';
-    const subscription = myObservable$
-      .pipe(
-        map(zahl => zahl * 10)
-        // TODO: hand on
-        // 1. filtern, nur Zahlen größer als 10
-        // 2. die summe aller Zahlen
-        // 3. so viele herzchen ausgeben
-      )
-
-      .subscribe(observer);
-    setTimeout(() => subscription.unsubscribe(), 3000);
-
-
-
-
-
-
-    /*
     this.book$ = this.route.paramMap
       .pipe(
         map(paramMap => paramMap.get('isbn')),
         switchMap(isbn => this.bs.getSingle(isbn)),
         retry(5)
       );
-    */
+
+
+    this.route.paramMap
+      .pipe(
+        map(paramMap => paramMap.get('isbn')),
+        map(isbn => this.bs.getSingle(isbn)),
+      ).subscribe((x) =>
+        x.subscribe(buch => console.log(buch))
+      );
+
+
+
   }
 
 }
