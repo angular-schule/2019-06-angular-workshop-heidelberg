@@ -27,12 +27,15 @@ export class BookDetailsComponent implements OnInit {
     const myObservable$ = new Observable(subscriber => {
       subscriber.next('🐼');
       subscriber.next('🐵');
-      subscriber.error('Oh nein! Etwas ist schief gelaufen!');
+
+      setTimeout(() => subscriber.next('🐸'), 1000);
+      setTimeout(() => subscriber.next('🐝'), 1000);
+      // subscriber.error('Oh nein! Etwas ist schief gelaufen!');
     });
 
     const subscription = myObservable$.subscribe(observer);
 
-    subscription.unsubscribe();
+    setTimeout(() => subscription.unsubscribe(), 3000);
 
 
 
