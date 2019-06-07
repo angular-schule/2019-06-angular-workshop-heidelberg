@@ -24,20 +24,30 @@ export class BookDetailsComponent implements OnInit {
       complete: () => console.log('Complete!')
     };
 
-    const myObservable$ = new Observable(subscriber => {
-      subscriber.next('🐼');
-      subscriber.next('🐵');
+    const myObservable$ = new Observable<number>(subscriber => {
+      subscriber.next(1);
+      subscriber.next(2);
 
-      setTimeout(() => subscriber.next('🐸'), 1000);
-      setTimeout(() => subscriber.next('🐝'), 1000);
-      // subscriber.error('Oh nein! Etwas ist schief gelaufen!');
-
-      subscriber.error('😱');
+      setTimeout(() => subscriber.next(3), 1000);
+      setTimeout(() => subscriber.next(4), 1000);
+      setTimeout(() => subscriber.error('😱'), 2000);
     });
 
-    const subscription = myObservable$.subscribe(observer);
+    // import { map } from 'rxjs/operators';
+    const subscription = myObservable$
+      .pipe(
+        map(zahl => zahl * 10)
+        // TODO: hand on
+        // 1. filtern, nur Zahlen größer als 10
+        // 2. die summe aller Zahlen
+        // 3. so viele herzchen ausgeben
+      )
 
+      .subscribe(observer);
     setTimeout(() => subscription.unsubscribe(), 3000);
+
+
+
 
 
 
