@@ -36,7 +36,7 @@ export class CreateBookComponent {
       ...this.bookForm.value,
       rating: 1
     };
-    this.createBook.emit(newBook);
+    this.createBook.next(newBook);
     this.bookForm.reset();
   }
 }
