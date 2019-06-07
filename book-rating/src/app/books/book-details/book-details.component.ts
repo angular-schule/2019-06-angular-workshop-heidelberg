@@ -18,10 +18,13 @@ export class BookDetailsComponent implements OnInit {
 
   ngOnInit() {
 
-    of('😎', '🤩', '🅰️').subscribe(e => console.log(e));
+    const observer = {
+      next: e => console.log(e),
+      error: err => console.error(err),
+      complete: () => console.log('Complete!')
+    };
 
-    from(['😎', '🤩', '🅰️']).subscribe(e => console.log(e));
-
+    of('😎', '🤩', '🅰️').subscribe(observer);
 
 
 
