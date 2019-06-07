@@ -29,8 +29,7 @@ export class BookDetailsComponent implements OnInit {
             isbn: '000',
             description: '',
             rating: 1
-          })))),
-        share()
+          }))))
       );
   }
 
