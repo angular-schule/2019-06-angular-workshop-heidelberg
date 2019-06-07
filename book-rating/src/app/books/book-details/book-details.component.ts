@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, of, from } from 'rxjs';
-import { map, switchMap, retry, filter, reduce, tap } from 'rxjs/operators';
+import { map, switchMap, retry, filter, reduce, tap, mergeMap, catchError, share } from 'rxjs/operators';
 import { BookStoreService } from '../shared/book-store.service';
 import { Book } from '../shared/book';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'br-book-details',
@@ -13,6 +14,7 @@ import { Book } from '../shared/book';
 export class BookDetailsComponent implements OnInit {
 
   book$: Observable<Book>;
+  showDescription = false;
 
   constructor(private route: ActivatedRoute, private bs: BookStoreService) { }
 
@@ -21,21 +23,15 @@ export class BookDetailsComponent implements OnInit {
     this.book$ = this.route.paramMap
       .pipe(
         map(paramMap => paramMap.get('isbn')),
-        switchMap(isbn => this.bs.getSingle(isbn)),
-        retry(5)
+        switchMap(isbn => this.bs.getSingle(isbn)
+          .pipe(catchError((err: HttpErrorResponse) => of({
+            title: 'Error loading ' + err.url,
+            isbn: '000',
+            description: '',
+            rating: 1
+          })))),
+        share()
       );
-
-
-    this.route.paramMap
-      .pipe(
-        map(paramMap => paramMap.get('isbn')),
-        map(isbn => this.bs.getSingle(isbn)),
-      ).subscribe((x) =>
-        x.subscribe(buch => console.log(buch))
-      );
-
-
-
   }
 
 }

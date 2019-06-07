@@ -1,7 +1,12 @@
 <h1>{{ (book$ | async)?.title }}</h1>
 
-<p>
-  book-details works!
+<button
+  (click)="showDescription = true"
+  class="btn btn-primary"
+  >Show desription</button>
+<p *ngIf="showDescription">
+  Test?! {{ (book$ | async)?.description }}
 </p>
 
-<a routerLink="/book/222">Book 222</a>
+<a routerLink="/book/222">Error Book</a><br>
+<a routerLink="/book/9781680501735">Book 9781680501735</a>
