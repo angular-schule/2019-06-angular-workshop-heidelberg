@@ -24,7 +24,13 @@ export class BookDetailsComponent implements OnInit {
       complete: () => console.log('Complete!')
     };
 
-    const subscription = of('😎', '🤩', '🅰️').subscribe(observer);
+    const myObservable$ = new Observable(subscriber => {
+      subscriber.next('🐼');
+      subscriber.next('🐵');
+      subscriber.error('Oh nein! Etwas ist schief gelaufen!');
+    });
+
+    const subscription = myObservable$.subscribe(observer);
 
     subscription.unsubscribe();
 
