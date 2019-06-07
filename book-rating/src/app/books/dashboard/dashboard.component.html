@@ -1,7 +1,9 @@
 <br-create-book (createBook)="doCreateBook($event)"></br-create-book>
 
+<h3 *ngIf="loading$ | async">Lade Bücher...</h3>
+
 <div
-  *ngFor="let b of books; odd as o"
+  *ngFor="let b of (books$ | async); odd as o"
   [ngClass]="{ grayBackground: o }"
 >
 
@@ -13,5 +15,5 @@
 
 </div>
 
-Anzahl der Bücher: {{ books.length }}
+Anzahl der Bücher: {{ (books$ | async).length }}
 
