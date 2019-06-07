@@ -24,7 +24,9 @@ export class BookDetailsComponent implements OnInit {
       complete: () => console.log('Complete!')
     };
 
-    of('😎', '🤩', '🅰️').subscribe(observer);
+    const subscription = of('😎', '🤩', '🅰️').subscribe(observer);
+
+    subscription.unsubscribe();
 
 
 
