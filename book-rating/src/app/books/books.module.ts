@@ -8,10 +8,12 @@ import { BookComponent } from './book/book.component';
 import { RepeatDirective } from './shared/repeat.directive';
 import { CreateBookComponent } from './create-book/create-book.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
-import { StoreModule } from '@ngrx/store';
+import { StoreModule, Store } from '@ngrx/store';
 import * as fromBook from './reducers/book.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { BookEffects } from './effects/book.effects';
+import { State } from '../reducers';
+import { LoadBooks } from './actions/book.actions';
 
 @NgModule({
   declarations: [
@@ -32,4 +34,9 @@ import { BookEffects } from './effects/book.effects';
     DashboardComponent
   ]
 })
-export class BooksModule { }
+export class BooksModule {
+
+  constructor(private store: Store<State>) {
+    this.store.dispatch(new LoadBooks());
+  }
+}
